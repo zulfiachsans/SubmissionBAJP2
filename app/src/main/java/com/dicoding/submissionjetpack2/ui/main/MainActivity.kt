@@ -18,24 +18,27 @@ class MainActivity : AppCompatActivity() {
         carouselView.setImageListener(imageListener)
 
         val fragmentList = listOf(MoviesFragment(), TvFragment())
-        val tabTitle = listOf("MOVIES","TVSHOWS")
-        viewpager.adapter = SectionPagerAdapter(fragmentList, this.supportFragmentManager, lifecycle)
+        val tabTitle = listOf("MOVIES", "TVSHOWS")
+        viewpager.adapter =
+            SectionPagerAdapter(fragmentList, this.supportFragmentManager, lifecycle)
 
-        TabLayoutMediator(tabLayout2, viewpager){tab, position ->
+        TabLayoutMediator(tabLayout2, viewpager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
     }
+
     val carouselImages = intArrayOf(
-        R.drawable.latar_a_star,
-        R.drawable.latar_alita,
-        R.drawable.background_bohemian,
-        R.drawable.latar_naruto_shipudden,
-        R.drawable.latar_the_simpson,
-        R.drawable.background_aquaman,
-        R.drawable.background_invinity_war
+        R.drawable.cruella,
+        R.drawable.the_conjuring,
+        R.drawable.army,
+        R.drawable.miraculous,
+        R.drawable.loki,
+        R.drawable.lucifer,
+        R.drawable.ragnarok,
+        R.drawable.invincible
     )
 
-    val imageListener = ImageListener {position, imageView ->
+    val imageListener = ImageListener { position, imageView ->
         imageView.setImageResource(carouselImages[position])
     }
 

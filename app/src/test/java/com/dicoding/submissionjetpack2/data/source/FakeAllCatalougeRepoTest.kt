@@ -9,6 +9,9 @@ import com.dicoding.submissionjetpack2.data.source.local.TvEntity
 import com.dicoding.submissionjetpack2.data.source.remote.RemoteAllDataSource
 import com.dicoding.submissionjetpack2.data.source.remote.response.movie.DetailMovieResponse
 import com.dicoding.submissionjetpack2.data.source.remote.response.movie.Movie
+import com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.DetailTvShowsResponse
+import com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.TvShows
+import com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.TvShowsResponse
 import com.nhaarman.mockitokotlin2.mock
 import org.junit.Test
 
@@ -67,10 +70,54 @@ class FakeAllCatalougeRepoTest(private val remoteAllDataSource: RemoteAllDataSou
     }
 
     override fun getTvShows(): LiveData<List<TvEntity>> {
-        TODO("Not yet implemented")
+        val tvResult = MutableLiveData<List<TvEntity>>()
+
+        remoteAllDataSource.getTvShows(object : RemoteAllDataSource.LoadTvShowsCallback {
+            override fun onTvShowsLoaded(tvShows: List<TvShows>?) {
+                val tvList = ArrayList<TvEntity>()
+                if (tvShows != null) {
+                    for (response in tvShows) {
+                        with(response) {
+                            val tvShow = TvEntity(id, name, posterPath, voteAverage)
+                            tvList.add(tvShow)
+                        }
+                    }
+                    tvResult.postValue(tvList)
+                }
+            }
+        })
+        return tvResult
     }
 
     override fun getDetailTvShow(tvShowId: String): LiveData<DetailEntity> {
-        TODO("Not yet implemented")
+        val movieDetailResult = MutableLiveData<DetailEntity>()
+
+        remoteAllDataSource.getDetailTvShow(object : RemoteAllDataSource.LoadDetailTvShowCallback {
+            override fun onDetailTvShowLoaded(tvShowDetail: DetailTvShowsResponse?) {
+                if (tvShowDetail != null) {
+                    with(tvShowDetail) {
+                        val listGenres = ArrayList<String>()
+
+                        for (genre in genres) {
+                            listGenres.add(genre.name)
+                        }
+
+                        val detailMovie = DetailEntity(
+                            backdropPath = backdropPath,
+                            genres = listGenres,
+                            id = id,
+                            overview = overview,
+                            posterPath = posterPath,
+                            releaseDate = firstAirDate,
+                            runtime = episodeRunTime.average().toInt(),
+                            title = name,
+                            voteAverage = voteAverage
+                        )
+                        movieDetailResult.postValue(detailMovie)
+                    }
+                }
+            }
+        }, tvShowId)
+        return movieDetailResult
     }
 }

@@ -20,37 +20,37 @@ object DataDummy {
     fun getMovies(): List<MovieEntity> {
         return listOf(
             MovieEntity(
-                332562,
-                "A Star Is Born",
-                "/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
-                7.5
-            ),
-            MovieEntity(
-                399579,
-                "Alita: Battle Angle",
-                "/xRWht48C2V8XNfzvPehyClOvDni.jpg",
+                464052,
+                "Wonder Woman 1984",
+                "/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
                 7.2
             ),
             MovieEntity(
-                297802,
-                "Aquaman",
-                "/xLPffWMhMj1l50ND3KchMjYoKmE.jpg",
-                6.9
+                508442,
+                "Soul",
+                "/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg",
+                8.4
+            ),
+            MovieEntity(
+                517096,
+                "Cosmoball",
+                "/eDJYDXRoWoUzxjd52gtz5ODTSU1.jpg",
+                5.3
             )
         )
     }
 
     fun getDetailMovie(): DetailEntity {
         return DetailEntity(
-            "/mnDvPokXpvsdPcWSjNRPhiiLOKu.jpg",
-            listOf("Drama", "Romance", "Music"),
-            332562,
-            "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
-            "/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
-            "2018-05-10",
-            216,
-            "A Star Is Born",
-            7.5
+            "/srYya1ZlI97Au4jUYAktDe3avyA.jpg",
+            listOf("Fantasy", "Action", "Adventure"),
+            468552,
+            "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah.",
+            "/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
+            "2020-12-16",
+            151,
+            "Wonder Woman 1984",
+            7.2
         )
     }
 
@@ -321,11 +321,11 @@ object DataDummy {
             episodeRunTime = listOf(30),
             firstAirDate = "2018-05-02",
             genres = listOf(
-                TvShowsGenre(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.Genre(
                     id = 10759,
                     name = "Action & Adventure"
                 ),
-                TvShowsGenre(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.Genre(
                     id = 18,
                     name = "Drama"
                 )
@@ -372,19 +372,19 @@ object DataDummy {
             popularity = 1132.227,
             posterPath = "/obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
             productionCompanies = listOf(
-                TvShowsCompanyProduction(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.CompanyProduction(
                     id = 101024,
                     logoPath = null,
                     name = "Hurwitz & Schlossberg Productions",
                     originCountry = "US"
                 ),
-                TvShowsCompanyProduction(
+               com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.CompanyProduction(
                     id = 11073,
                     logoPath = "/wHs44fktdoj6c378ZbSWfzKsM2Z.png",
                     name = "Sony Pictures Television",
                     originCountry = "US"
                 ),
-                TvShowsCompanyProduction(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.CompanyProduction(
                     id = 907,
                     logoPath = "/ca5SWI5uvU985f8Kbb4xc8AmVWH.png",
                     name = "Overbrook Entertainment",
@@ -392,7 +392,7 @@ object DataDummy {
                 ),
             ),
             productionCountries = listOf(
-                TvShowsCountryProduction(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.CountryProduction(
                     iso31661 = "US",
                     name = "United States of America"
                 )
@@ -427,7 +427,7 @@ object DataDummy {
                 )
             ),
             spokenLanguages = listOf(
-                TvShowsSpokenEnglish(
+                com.dicoding.submissionjetpack2.data.source.remote.response.tvshow.SpokenLanguage(
                     englishName = "English",
                     iso6391 = "en",
                     name = "English"

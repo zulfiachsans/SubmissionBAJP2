@@ -28,7 +28,7 @@ class DetailActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
 
     private lateinit var detailBinding: ActivityDetailBinding
     private val percentageToShowImage = 20
-    private var mMaxScrollSize = 0
+    private var maxScrollSize = 0
     private var mIsImageHidden = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,13 +68,12 @@ class DetailActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
     }
 
     private fun populateDataDetail(data: DetailEntity) {
-        detailBinding.tvRate.text = data.voteAverage.toString()
         detailBinding.collapsing.title = data.title
         detailBinding.tvDescriptionOverview.text = data.overview
 
         Glide.with(this)
             .asBitmap()
-            .load(IMAGE_URL + data.backdropPath)
+            .load(IMAGE_URL + data.posterPath)
             .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     detailBinding.profileMovie.setImageBitmap(resource)
@@ -87,12 +86,8 @@ class DetailActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
             })
 
         Glide.with(this)
-            .load(IMAGE_URL + data.posterPath)
-            .into(detailBinding.imgDetail)
-
-        detailBinding.ivDetail.tag = data.posterPath
-        detailBinding.imgDetail.tag = data.backdropPath
-
+            .load(IMAGE_URL + data.backdropPath)
+            .into(detailBinding.ivDetail)
         showProgressBar(false)
     }
 
@@ -110,9 +105,9 @@ class DetailActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
     }
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-        if (mMaxScrollSize == 0) mMaxScrollSize = appBarLayout!!.totalScrollRange
+        if (maxScrollSize == 0) maxScrollSize = appBarLayout!!.totalScrollRange
 
-        val currentScrollPercentage: Int = (abs(verticalOffset) * 100 / mMaxScrollSize)
+        val currentScrollPercentage: Int = (abs(verticalOffset) * 100 / maxScrollSize)
 
         if (currentScrollPercentage >= percentageToShowImage) {
             if (!mIsImageHidden) {
